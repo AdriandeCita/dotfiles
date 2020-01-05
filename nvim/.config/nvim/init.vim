@@ -68,6 +68,8 @@ Plugin 'ervandew/supertab'
 "Plugin 'euclio/vim-markdown-composer'
 Plugin 'alexlafroscia/postcss-syntax.vim'
 
+Plugin 'MahbubAlam231/hybrid-line-numbers'
+
 " After all plugins...
 call vundle#end()
 filetype plugin indent on
