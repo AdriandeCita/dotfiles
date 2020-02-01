@@ -1,0 +1,203 @@
+priority -50
+
+snippet db "display block"
+display: block;$0
+endsnippet
+
+snippet dib "display inline-block"
+display: inline-block;$0
+endsnippet
+
+snippet dn "display none"
+display: none;$0
+endsnippet
+
+snippet df "display flex"
+display: flex;$0
+endsnippet
+
+snippet posa "position absolute"
+position: absolute;$0
+endsnippet
+
+snippet posr "position relatine"
+position: relative;$0
+endsnippet
+
+snippet poss "position static"
+position: static;$0
+endsnippet
+
+snippet posf "position fixed"
+position: fixed;$0
+endsnippet
+
+snippet maxw "max-width"
+max-width: $0;
+endsnippet
+
+snippet maxh "max-height"
+max-height: $0;
+endsnippet
+
+snippet maxw "min-width"
+min-width: $0;
+endsnippet
+
+snippet maxh "min-height"
+min-height: $0;
+endsnippet
+
+# Properties with value
+snippet "pl(\d+)" "padding-left" r
+padding-left: `!p snip.rv = match.group(1)`px;$0
+endsnippet
+
+snippet "pr(\d+)" "padding-right" r
+padding-right: `!p snip.rv = match.group(1)`px;$0
+endsnippet
+
+snippet "pt(\d+)" "padding-top" r
+padding-top: `!p snip.rv = match.group(1)`px;$0
+endsnippet
+
+snippet "pb(\d+)" "padding-bottom" r
+padding-bottom: `!p snip.rv = match.group(1)`px;$0
+endsnippet
+
+snippet "mt(\d+)" "margin-top" r
+margin-top: `!p snip.rv = match.group(1)`px;$0
+endsnippet
+
+snippet "mb(\d+)" "margin-bottom" r
+margin-bottom: `!p snip.rv = match.group(1)`px;$0
+endsnippet
+
+snippet "ml(\d+)" "margin-left" r
+margin-left: `!p snip.rv = match.group(1)`px;$0
+endsnippet
+
+snippet "mr(\d+)" "margin-right" r
+margin-right: `!p snip.rv = match.group(1)`px;$0
+endsnippet
+
+snippet "minw(\d+)" "min-width" r
+min-width: `!p snip.rv = match.group(1)`px;$0
+endsnippet
+
+snippet "minh(\d+)" "min-height" r
+min-height: `!p snip.rv = match.group(1)`px;$0
+endsnippet
+
+snippet "maxw(\d+)" "max-width" r
+max-width: `!p snip.rv = match.group(1)`px;$0
+endsnippet
+
+snippet "maxh(\d+)" "max-height" r
+max-height: `!p snip.rv = match.group(1)`px;$0
+endsnippet
+
+snippet "fz(\d+)" "font-size" r
+font-size: `!p snip.rv = match.group(1)`px;$0
+endsnippet
+
+snippet "\bt(\d+)" "top" r
+top: `!p snip.rv = match.group(1)`px;$0
+endsnippet
+
+snippet "\bt-(\d+)" "top" r
+top: -`!p snip.rv = match.group(1)`px;$0
+endsnippet
+
+snippet "l(\d+)" "left" r
+left: `!p snip.rv = match.group(1)`px;$0
+endsnippet
+
+snippet "l-(\d+)" "left" r
+left: -`!p snip.rv = match.group(1)`px;$0
+endsnippet
+
+snippet "b(\d+)" "bottom" r
+bottom: `!p snip.rv = match.group(1)`px;$0
+endsnippet
+
+snippet "b-(\d+)" "bottom" r
+bottom: -`!p snip.rv = match.group(1)`px;$0
+endsnippet
+
+snippet "r(\d+)" "right" r
+right: `!p snip.rv = match.group(1)`px;$0
+endsnippet
+
+snippet "r-(\d+)" "right" r
+right: -`!p snip.rv = match.group(1)`px;$0
+endsnippet
+
+snippet maxwn "max-width"
+max-width: none;$0
+endsnippet
+
+snippet jcsb "justify-content - space-between"
+justify-content: space-between;$0
+endsnippet
+
+snippet jcsa "justify-content - space-around"
+justify-content: space-around;$0
+endsnippet
+
+snippet jcc "justify-content - center"
+justify-content: center;$0
+endsnippet
+
+snippet maxhn "max-height"
+max-height: none;$0
+endsnippet
+
+snippet tar "text-align right"
+text-align: right;$0
+endsnippet
+
+snippet tal "text-align left"
+text-align: left;$0
+endsnippet
+
+snippet tac "text-align center"
+text-align: center;$0
+endsnippet
+
+snippet tdn "text-decoration none"
+text-decoration: none;$0
+endsnippet
+
+snippet tdu "text-decoration underline"
+text-decoration: underline;$0
+endsnippet
+
+# @mq snippets
+
+snippet mq "@mq"
+@include mq($until: $1) {
+    $2
+}$0
+endsnippet
+
+snippet mqt "@mq tablet"
+@include mq($until: tablet) {
+    $1
+}$0
+endsnippet
+
+snippet mqm "@mq mobile"
+@include mq($until: mobile) {
+    $1
+}$0
+endsnippet
+
+snippet mqd "@mq desktop"
+@include mq($until: desktop) {
+    $1
+}$0
+endsnippet
+
+
+# vim:ft=snippets:

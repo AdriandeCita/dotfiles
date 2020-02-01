@@ -1,0 +1,72 @@
+priority -50
+
+snippet db "display block"
+display: block;
+$0
+endsnippet
+
+snippet dib "display inline-block"
+display: inline-block;
+$0
+endsnippet
+
+snippet dn "display none"
+display: none;
+$0
+endsnippet
+
+snippet df "display flex"
+display: flex;
+$0
+endsnippet
+
+snippet posa "position absolute"
+position: absolute;
+$0
+endsnippet
+
+snippet posr "position relatine"
+position: relative;
+$0
+endsnippet
+
+snippet poss "position static"
+position: static;
+$0
+endsnippet
+
+snippet posf "position fixed"
+position: fixed;
+$0
+endsnippet
+
+snippet mq "@mq"
+@include mq($from: $1) {
+    $2
+}
+$0
+endsnippet
+
+snippet mqt "@mq tablet"
+@include mq($from: tablet) {
+    $1
+}
+$0
+endsnippet
+
+snippet mqm "@mq mobile"
+@include mq($from: mobile) {
+    $1
+}
+$0
+endsnippet
+
+snippet mqd "@mq desktop"
+@include mq($from: desktop) {
+    $1
+}
+$0
+endsnippet
+
+
+# vim:ft=snippets:
