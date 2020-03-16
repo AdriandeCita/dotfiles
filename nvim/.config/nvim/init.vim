@@ -70,6 +70,10 @@ Plugin 'alexlafroscia/postcss-syntax.vim'
 
 Plugin 'MahbubAlam231/hybrid-line-numbers'
 
+" ember stuff
+Plugin 'joukevandermaas/vim-ember-hbs.git'
+Plugin 'dsawardekar/ember.vim'
+
 " After all plugins...
 call vundle#end()
 filetype plugin indent on
