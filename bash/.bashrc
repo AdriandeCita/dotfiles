@@ -118,6 +118,7 @@ if ! shopt -oq posix; then
   fi
 fi
 
+export VAULT_ADDR="https://vault.npavlabs.accedian.net"
 
 # My .bashrc config
 
@@ -135,3 +136,10 @@ alias urldecode='python2 -c "import sys, urllib as ul; \
 alias urlencode='python2 -c "import sys, urllib as ul; \
     print ul.quote_plus(sys.argv[1])"'
 alias server-here='python -m SimpleHTTPServer'
+
+
+# The next line updates PATH for the Google Cloud SDK.
+if [ -f '/home/mykola/soft/google-cloud-sdk/path.bash.inc' ]; then . '/home/mykola/soft/google-cloud-sdk/path.bash.inc'; fi
+
+# The next line enables shell command completion for gcloud.
+if [ -f '/home/mykola/soft/google-cloud-sdk/completion.bash.inc' ]; then . '/home/mykola/soft/google-cloud-sdk/completion.bash.inc'; fi
