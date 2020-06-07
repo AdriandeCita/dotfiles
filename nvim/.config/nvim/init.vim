@@ -74,6 +74,9 @@ Plugin 'MahbubAlam231/hybrid-line-numbers'
 Plugin 'joukevandermaas/vim-ember-hbs.git'
 Plugin 'dsawardekar/ember.vim'
 
+" Typescript
+Plugin 'leafgarland/typescript-vim'
+
 " After all plugins...
 call vundle#end()
 filetype plugin indent on
