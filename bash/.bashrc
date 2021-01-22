@@ -143,3 +143,16 @@ if [ -f '/home/mykola/soft/google-cloud-sdk/path.bash.inc' ]; then . '/home/myko
 
 # The next line enables shell command completion for gcloud.
 if [ -f '/home/mykola/soft/google-cloud-sdk/completion.bash.inc' ]; then . '/home/mykola/soft/google-cloud-sdk/completion.bash.inc'; fi
+
+alias gnome-settings="env XDG_CURRENT_DESKTOP=GNOME gnome-control-center"
+
+video2gif() {
+  ffmpeg -y -i "${1}" -vf fps=${3:-10},scale=${2:-320}:-1:flags=lanczos,palettegen "${1}.png"
+  ffmpeg -i "${1}" -i "${1}.png" -filter_complex "fps=${3:-10},scale=${2:-320}:-1:flags=lanczos[x];[x][1:v]paletteuse" "${1}".gif
+  rm "${1}.png"
+}
+
+if [ -f $HOME/.bashrc_private ]; then
+    source $HOME/.bashrc_private
+fi
+

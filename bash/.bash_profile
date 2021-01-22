@@ -6,3 +6,7 @@ if [ -f ~/.bashrc ]; then
 fi
 
 # User specific environment and startup programs
+
+export PATH="$PATH:$(yarn global bin)"
+
+
