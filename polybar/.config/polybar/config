@@ -60,7 +60,7 @@ font-2 = FiraSansMedium:pixelsize=12;3
 
 modules-left = i3 title
 modules-center = date
-modules-right = cpu memory temperature xkeyboard wlan lan backlight alsa battery
+modules-right = cpu memory temperature xkeyboard wlan lan backlight alsa battery syncthing
 
 tray-position = right
 tray-padding = 2
@@ -108,7 +108,7 @@ label = %percentage_used%%
 
 [module/wlan]
 type = internal/network
-interface = wlp4s0
+interface = wlp6s0
 interval = 3.0
 
 format-connected = 📶 <ramp-signal> <label-connected>
@@ -134,7 +134,7 @@ ramp-signal-10 = "100%"
 
 [module/lan]
 type = internal/network
-interface = enp0s31f6
+interface = enp3s0
 interval = 3.0
 
 ;format-connected-underline = #287373
@@ -193,7 +193,8 @@ ramp-capacity-6-foreground = ${colors.excellent}
 
 [module/temperature]
 type = internal/temperature
-thermal-zone = 0
+;thermal-zone = 0
+hwmon-path = /sys/devices/pci0000:00/0000:00:18.3/hwmon/hwmon0/temp1_input
 warn-temperature = 60
 
 format = <ramp> <label>
@@ -295,6 +296,22 @@ label = %{A4:xbacklight -inc 10:}%{A5:xbacklight -dec 10:}💡  %percentage%%%{A
 type = internal/xkeyboard
 format-prefix = "⌨ "
 format = <label-layout>
+
+[module/syncthing]
+type = custom/script
+
+; Available tokens:
+;   %counter%
+; Command to be executed (using "/bin/sh -c [command]")
+exec = syncthing-status.sh
+
+format-prefix = "Syncthing "
+; Seconds to sleep between updates
+; Default: 5 (0 if `tail = true`)
+interval = 90
+
+click-left = "xdg-open http://127.0.0.1:8384/ &"
+
 
 ; vim:ft=dosini
 
