@@ -322,15 +322,11 @@ type = custom/script
 exec = wireguard-status.sh wg0
 
 ; Seconds to sleep between updates
-; Default: 5 (0 if `tail = true`)
 interval = 5
 
 double-click-left = "wireguard-status.sh wg0 --toggle"
+; double-click is not quite reliable on polybar, hence the backup
 click-right = "wireguard-status.sh wg0 --toggle"
-
-; vim:ft=dosini
-
-
 
 ; vim:ft=dosini
 
