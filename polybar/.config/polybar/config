@@ -60,7 +60,7 @@ font-2 = FiraSansMedium:pixelsize=12;3
 
 modules-left = i3 title
 modules-center = date
-modules-right = cpu memory temperature xkeyboard wlan lan backlight alsa battery
+modules-right = cpu memory temperature xkeyboard wlan lan backlight alsa battery syncthing wireguard
 
 tray-position = right
 tray-padding = 2
@@ -164,7 +164,7 @@ label = %{A1:minetime:}%{F#83a598}%date%%{F-}%{F#b16286} %time%%{F-}%{A}
 [module/battery]
 type = internal/battery
 battery = BAT1
-adapter = AC
+adapter = ACAD
 full-at = 90
 
 format-charging-prefix = "🔌🔋  "
@@ -283,18 +283,54 @@ type = internal/backlight
 
 ; Use the following command to list available cards:
 ; $ ls -1 /sys/class/backlight/
-card = intel_backlight
+card = amdgpu_bl0
 
 format = <label>
 
 ; Available tokens:
 ;   %percentage% (default)
-label = %{A4:xbacklight -inc 10:}%{A5:xbacklight -dec 10:}💡  %percentage%%%{A}%{A}
+label = %{A4:brightnessctl -c backlight s +5%:}%{A5:brightnessctl -c backlight s 5%-:}💡  %percentage%%%{A}%{A}
 
 [module/xkeyboard]
 type = internal/xkeyboard
 format-prefix = "⌨ "
 format = <label-layout>
+
+
+[module/syncthing]
+type = custom/script
+
+; Available tokens:
+;   %counter%
+; Command to be executed (using "/bin/sh -c [command]")
+exec = syncthing-status.sh
+
+format-prefix = "Syncthing "
+; Seconds to sleep between updates
+; Default: 5 (0 if `tail = true`)
+interval = 90
+
+click-left = "xdg-open http://127.0.0.1:8384/ &"
+
+
+[module/wireguard]
+type = custom/script
+
+; Available tokens:
+;   %counter%
+; Command to be executed (using "/bin/sh -c [command]")
+exec = wireguard-status.sh wg0
+
+; Seconds to sleep between updates
+; Default: 5 (0 if `tail = true`)
+interval = 5
+
+double-click-left = "wireguard-status.sh wg0 --toggle"
+click-right = "wireguard-status.sh wg0 --toggle"
+
+; vim:ft=dosini
+
+
 
 ; vim:ft=dosini
 
