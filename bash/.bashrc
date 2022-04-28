@@ -118,7 +118,6 @@ if ! shopt -oq posix; then
   fi
 fi
 
-export VAULT_ADDR="https://vault.npavlabs.accedian.net"
 
 # My .bashrc config
 
@@ -138,17 +137,11 @@ alias urlencode='python2 -c "import sys, urllib as ul; \
 alias server-here='python -m SimpleHTTPServer'
 
 
-# The next line updates PATH for the Google Cloud SDK.
-if [ -f '/home/mykola/soft/google-cloud-sdk/path.bash.inc' ]; then . '/home/mykola/soft/google-cloud-sdk/path.bash.inc'; fi
-
-# The next line enables shell command completion for gcloud.
-if [ -f '/home/mykola/soft/google-cloud-sdk/completion.bash.inc' ]; then . '/home/mykola/soft/google-cloud-sdk/completion.bash.inc'; fi
-
 alias gnome-settings="env XDG_CURRENT_DESKTOP=GNOME gnome-control-center"
 
 video2gif() {
-  ffmpeg -y -i "${1}" -vf fps=${3:-10},scale=${2:-320}:-1:flags=lanczos,palettegen "${1}.png"
-  ffmpeg -i "${1}" -i "${1}.png" -filter_complex "fps=${3:-10},scale=${2:-320}:-1:flags=lanczos[x];[x][1:v]paletteuse" "${1}".gif
+  ffmpeg -i "${1}" -filter_complex "[0:v] palettegen" "${1}.png"
+  ffmpeg -i "${1}" -i "${1}.png" -r 12 -filter_complex "[0:v][1:v] paletteuse" "${1}".gif
   rm "${1}.png"
 }
 
@@ -156,3 +149,17 @@ if [ -f $HOME/.bashrc_private ]; then
     source $HOME/.bashrc_private
 fi
 
+
+# The next line updates PATH for the Google Cloud SDK.
+if [ -f '/home/user/soft/google-cloud-sdk/path.bash.inc' ]; then . '/home/user/soft/google-cloud-sdk/path.bash.inc'; fi
+
+# The next line enables shell command completion for gcloud.
+if [ -f '/home/user/soft/google-cloud-sdk/completion.bash.inc' ]; then . '/home/user/soft/google-cloud-sdk/completion.bash.inc'; fi
+
+export PATH="$HOME/.npm-global/bin:$PATH"
+export N_PREFIX=$HOME/n
+export PATH="$HOME/n/bin:$PATH"
+
+# Java bellsoft
+export JAVA_HOME="/usr/lib/jvm/bellsoft-java8-full-amd64"
+export PATH="$JAVA_HOME/bin:$PATH"
