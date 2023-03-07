@@ -10,3 +10,5 @@ fi
 export PATH="$PATH:$(yarn global bin)"
 
 
+export PATH="$HOME/.tfenv/bin:$PATH"
+export PATH="$HOME/.tgenv/bin:$PATH"

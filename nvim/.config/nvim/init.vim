@@ -65,7 +65,7 @@ Plugin 'ervandew/supertab'
 "Plugin 'severin-lemaignan/vim-minimap'
 " Markdown preview
 "Plugin 'suan/vim-instant-markdown'
-"Plugin 'euclio/vim-markdown-composer'
+Plugin 'euclio/vim-markdown-composer'
 Plugin 'alexlafroscia/postcss-syntax.vim'
 
 Plugin 'MahbubAlam231/hybrid-line-numbers'

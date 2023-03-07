@@ -39,8 +39,8 @@ bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT
 bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle
 
 # Display brightness control
-bindsym XF86MonBrightnessUp exec xbacklight -inc 10 # increase screen brightness
-bindsym XF86MonBrightnessDown exec xbacklight -dec 10 # decrease screen brightness
+bindsym XF86MonBrightnessUp exec brightnessctl -c backlight s +5% # increase screen brightness
+bindsym XF86MonBrightnessDown exec brightnessctl -c backlight s 5%- # decrease screen brightness
 
 
 # Use Mouse+$mod to drag floating windows to their wanted position
@@ -64,7 +64,7 @@ bindsym $mod+j focus left
 bindsym $mod+k focus down
 bindsym $mod+l focus up
 bindsym $mod+semicolon focus right
-bindsym Mod1+Tab focus right
+#bindsym Mod1+Tab focus right
 
 # alternatively, you can use the cursor keys:
 bindsym $mod+Left focus left
@@ -202,7 +202,7 @@ gaps inner 15
 smart_borders on
 
 # alt tab
-#exec alttab
+exec alttab
 
 # i3 exit stuff
 set $mode_system System (l) lock, (e) logout, (s) suspend, (h) hibernate, (r) reboot, (Shift+s) shutdown
@@ -224,12 +224,14 @@ bindsym $mod+F10 mode "$mode_system"
 exec nitrogen --restore &
 
 #keyboard layout
-exec setxkbmap -layout "us,ru,ua"
+exec setxkbmap -layout "us,ua"
+#exec setxkbmap -layout "us,ru,ua"
 exec setxkbmap -option "grp:alt_shift_toggle"
 
 # Screenshoter
-bindsym Print         exec maim -s | xclip -selection clipboard -t image/png
-bindsym Ctrl+Print         exec maim | xclip -selection clipboard -t image/png
+#bindsym Print         exec maim -s | xclip -selection clipboard -t image/png
+bindsym Print         exec flameshot gui
+bindsym Ctrl+Print         exec flameshot full -c
 
 bindsym Shift+Print         exec SCREENSHOT_UID="$(date +%s)" && maim -s ~/screenshots/shot-${SCREENSHOT_UID}.png && inkscape ~/screenshots/shot-${SCREENSHOT_UID}.png
 bindsym Shift+Ctrl+Print         exec SCREENSHOT_UID="$(date +%s)" && maim ~/screenshots/shot-${SCREENSHOT_UID}.png && inkscape ~/screenshots/shot-${SCREENSHOT_UID}.png
@@ -243,8 +245,6 @@ exec pasystray &
 
 exec --no-startup-id i3-msg 'workspace 1; exec /home/mykola/.local/share/umake/bin/firefox-developer'
 exec --no-startup-id i3-msg "workspace 2; exec \\"/usr/bin/gnome-terminal -e 'tmux new-session; split-window -h; attach'\\""
-#exec --no-startup-id i3-msg "workspace 2; exec \\"/usr/bin/termite -e 'tmux new-session; split-window -h; attach'\\""
-exec --no-startup-id i3-msg 'workspace 2; exec /snap/bin/keepassxc'
 exec --no-startup-id i3-msg 'workspace 3; exec /usr/bin/telegram'
 exec --no-startup-id i3-msg 'workspace 3; exec /usr/bin/slack'
 #exec --no-startup-id i3-msg 'workspace 3; exec /usr/bin/skypeforlinux'
