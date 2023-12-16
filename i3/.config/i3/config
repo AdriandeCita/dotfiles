@@ -39,9 +39,8 @@ bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT
 bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle
 
 # Display brightness control
-bindsym XF86MonBrightnessUp exec xbacklight -inc 10 # increase screen brightness
-bindsym XF86MonBrightnessDown exec xbacklight -dec 10 # decrease screen brightness
-
+bindsym XF86MonBrightnessUp exec brightnessctl -c backlight s +5% # increase screen brightness
+bindsym XF86MonBrightnessDown exec brightnessctl -c backlight s 5%- # decrease screen brightness
 
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
@@ -228,12 +227,11 @@ exec setxkbmap -layout "us,ru,ua"
 exec setxkbmap -option "grp:alt_shift_toggle"
 
 # Screenshoter
-bindsym Print         exec maim -s | xclip -selection clipboard -t image/png
-bindsym Ctrl+Print         exec maim | xclip -selection clipboard -t image/png
+bindsym Print         exec flameshot gui
+bindsym Ctrl+Print         exec flameshot full -c
 
 bindsym Shift+Print         exec SCREENSHOT_UID="$(date +%s)" && maim -s ~/screenshots/shot-${SCREENSHOT_UID}.png && inkscape ~/screenshots/shot-${SCREENSHOT_UID}.png
 bindsym Shift+Ctrl+Print         exec SCREENSHOT_UID="$(date +%s)" && maim ~/screenshots/shot-${SCREENSHOT_UID}.png && inkscape ~/screenshots/shot-${SCREENSHOT_UID}.png
-
 
 exec gxkb &
 exec pasystray &
@@ -245,7 +243,7 @@ exec --no-startup-id i3-msg 'workspace 1; exec /usr/bin/firefox-developer-editio
 exec --no-startup-id i3-msg "workspace 2; exec \\"/usr/bin/termite -e 'tmux new-session; split-window -h; attach'\\""
 exec --no-startup-id i3-msg 'workspace 3; exec /usr/bin/telegram'
 exec --no-startup-id i3-msg 'workspace 3; exec /usr/bin/slack'
-exec --no-startup-id i3-msg 'workspace 3; exec /usr/bin/skypeforlinux'
+#exec --no-startup-id i3-msg 'workspace 3; exec /usr/bin/skypeforlinux'
 #exec --no-startup-id i3-msg 'exec sleep 15 && workspace 1; exec sleep 15 && /usr/bin/phpstorm'
 
 # Resizing by 1

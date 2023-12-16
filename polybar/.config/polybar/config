@@ -13,10 +13,15 @@ background = #1d2021
 background-alt = #282828
 foreground = #a89984
 foreground-alt = #665c54
+; blue
 primary = #458588
-secondary = #cc241d
-alert = #689d6a
 white = #ebdbb2
+; green
+success = #689d6a
+; red
+error = #cc241d
+; yellow
+warning = #d79921
 
 [global/wm]
 margin-top = 0
@@ -56,11 +61,10 @@ font-3 = HurmitNerdFont:pixelsize=12;3
 ;modules-left = menu i3 title
 modules-left = i3 title
 modules-center = date
-modules-right = cpu memory temperature wlan backlight pulseaudio battery
+modules-right = cpu memory temperature wireguard wlan backlight pulseaudio battery
 
 tray-position = right
 tray-padding = 2
-
 
 [module/i3]
 type = internal/i3
@@ -77,7 +81,7 @@ label-unfocused-padding = 1
 label-unfocused-foreground = ${colors.foreground-alt}
 
 label-urgent = %name%
-label-urgent-foreground = ${colors.alert}
+label-urgent-foreground = ${colors.success}
 label-urgent-padding = 1
 
 label-visible = %name%
@@ -88,8 +92,19 @@ type = internal/cpu
 interval = 2
 format-prefix = " "
 format-prefix-foreground = ${colors.foreground}
+format = %{A3:notify-send "Top 10 processor-heavy apps\:" "$(ps -eo pid,cmd,%cpu --sort=-%cpu | head -11)":}<ramp-coreload>%{A}
 ;format-underline = #f90000
-label = %percentage%%
+;label = %percentage%%
+;label = %percentage-cores%
+ramp-coreload-spacing = 1
+ramp-coreload-0 = ▁
+ramp-coreload-1 = ▂
+ramp-coreload-2 = ▃
+ramp-coreload-3 = ▄
+ramp-coreload-4 = ▅
+ramp-coreload-5 = ▆
+ramp-coreload-6 = ▇
+ramp-coreload-7 = █
 
 [module/memory]
 type = internal/memory
@@ -97,7 +112,7 @@ interval = 2
 format-prefix = " "
 format-prefix-foreground = ${colors.foreground}
 ;format-underline = #4bffdc
-label = %percentage_used%%
+label = %{A3:notify-send "Top 10 memory-heavy apps\:" "$(ps -eo pid,cmd,%mem --sort=-%mem | head -11)":}%percentage_used%%%{A}
 
 [module/wlan]
 type = internal/network
@@ -109,7 +124,7 @@ format-connected = <ramp-signal> <label-connected>
 ;format-disconnected-underline = ${self.format-connected-underline}
 
 label-connected = %essid% %local_ip%
-label-connected-foreground = ${colors.alert}
+label-connected-foreground = ${colors.success}
 label-disconnected = %ifname% disconnected
 label-disconnected-foreground = ${colors.foreground-alt}
 
@@ -186,7 +201,7 @@ format-warn = <ramp> <label-warn>
 
 label = %{T4}%{T-} %temperature-c%
 label-warn = %{T4}%{T-} %temperature-c%
-label-warn-foreground = ${colors.secondary}
+label-warn-foreground = ${colors.error}
 
 ramp-0 = 
 ramp-1 = 
@@ -211,6 +226,8 @@ label-volume =  %percentage%%
 label-muted =  0%
 label-muted-foreground = #666
 
+interval = 2
+
 ; Only applies if <ramp-volume> is used
 ramp-volume-0 = 
 ramp-volume-1 = 
@@ -228,12 +245,27 @@ type = internal/backlight
 card = intel_backlight
 
 format = <label>
+format-foreground = ${colors.warning}
 
 ; Available tokens:
 ;   %percentage% (default)
-label = %{A4:xbacklight -inc 10:}%{A5:xbacklight -dec 10:}* %percentage%%%{A}%{A}
+label = %{A4:brightnessctl -c backlight s +5%:}%{A5:brightnessctl -c backlight s 5%-:}* %percentage%%%{A}%{A}
 
+[module/wireguard]
+type = custom/script
 
+; Available tokens:
+;   %counter%
+; Command to be executed (using "/bin/sh -c [command]")
+exec = wireguard-status.sh wg0
+
+; Seconds to sleep between updates
+interval = 5
+
+double-click-left = "wireguard-status.sh wg0 --toggle"
+; double-click is not quite reliable on polybar, hence the backup
+click-right = "wireguard-status.sh wg0 --toggle"
+click-left = "wireguard-status.sh wg0 --status"
 
 ; vim:ft=dosini
 
